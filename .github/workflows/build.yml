@@ -54,10 +54,10 @@ jobs:
 
       # Build APK
       - name: Build APK
-        run: gradle --gradle --no-daemon assembleDebug
+        run: 
       # Verify APK
       - name: Verify APK
-        run: |
+        run: gradle --no-daemon assembleDebug
           APK="RCJoystick_AIDE/app/build/outputs/apk/debug/app-debug.apk"
           test -s "$APK"
           ls -lh "$APK"

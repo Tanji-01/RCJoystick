@@ -54,8 +54,7 @@ jobs:
 
       # Build APK
       - name: Build APK
-        run: gradle --no-daemon -p RCJoystick_AIDE assembleDebug
-
+        run: gradle --gradle --no-daemon assembleDebug
       # Verify APK
       - name: Verify APK
         run: |

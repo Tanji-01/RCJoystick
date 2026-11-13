@@ -49,6 +49,14 @@ jobs:
           test -f RCJoystick_GitHub_Build.zip
           unzip -o -q RCJoystick_GitHub_Build.zip -x '.github/*'
 
+      # Fix missing Android drawable import in the archived Java source
+      - name: Fix missing GradientDrawable import
+        run: |
+          JAVA_FILE="app/src/main/java/com/shoaib/rccontroller/MainActivity.java"
+          test -f "$JAVA_FILE"
+          grep -q '^import android.graphics.drawable.GradientDrawable;' "$JAVA_FILE" || \\
+            sed -i '/^package /a import android.graphics.drawable.GradientDrawable;' "$JAVA_FILE"
+
       # 7. Verify project structure
       - name: Check project files
         run: |

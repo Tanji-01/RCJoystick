@@ -58,6 +58,16 @@ jobs:
             sed -i '/^package /a import android.graphics.drawable.GradientDrawable;' "$JAVA_FILE"
           fi
 
+      # Fix blank launch screen: attach the constructed root layout to the Activity
+      - name: Attach APEX UI to Activity
+        run: |
+          JAVA_FILE="app/src/main/java/com/shoaib/rccontroller/MainActivity.java"
+          grep -q 'content.addView(right,new LinearLayout.LayoutParams(0,-1,1.02f));' "$JAVA_FILE"
+          if ! grep -q 'setContentView(root);' "$JAVA_FILE"; then
+            sed -i '/content.addView(right,new LinearLayout.LayoutParams(0,-1,1.02f));/a\        setContentView(root);' "$JAVA_FILE"
+          fi
+          grep -q 'setContentView(root);' "$JAVA_FILE"
+
       # 7. Verify project structure
       - name: Check project files
         run: |

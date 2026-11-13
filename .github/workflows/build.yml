@@ -46,8 +46,8 @@ jobs:
       # 6. Extract Android project
       - name: Extract project
         run: |
-          test -f RCJoystick_GitHub_Build.zip
-          unzip -o -q RCJoystick_GitHub_Build.zip -x '.github/*'
+          test -f APEX_RC_Controller_v2_Source.zip
+          unzip -o -q APEX_RC_Controller_v2_Source.zip -x '.github/*'
 
       # Fix missing Android drawable import in the archived Java source
       - name: Fix missing GradientDrawable import
